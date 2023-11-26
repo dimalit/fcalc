@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./mathquill//mathquill.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./mathquill/mathquill.js"></script>
+    <script>
+        var MQ = MathQuill.getInterface(2);
+    </script>
+
+    <title>Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="./tree.js"></script>
+    <script src="./parser.js"></script>
+    <script src="./generator.js"></script>
+</head>
+<body>
+    <div class="calc-container">
+        <p id="output"></p>
+        <h2 class="logo">Calculator</h2>
+        <span type="text" id="inputContainer" class="input-bar" placeholder="Input"> </span>
+        <!--button id="submitBtn" class="input-button">Submit</button-->
+
+        <br/>
+
+        <div id="keyboard-container">
+
+        <div class="key" id="k">a</div>
+        <div class="key" id="k">b</div>
+        <div class="key" id="k"><span>c<sub>de</sub></span></div>
+        <div class="key" id="k">f</div>
+        <div class="key" id="k">g</div>
+        <div class="key" id="k">h</div>
+
+        <div class="key" id="k">i</div>
+        <div class="key" id="k"><span>j<sub>k</sub></span></div>
+        <div class="key" id="k">l</div>
+        <div class="key" id="k">m</div>
+        <div class="key" id="k"><span>n<sub>opq</sub></span></div>
+        <div class="key" id="k"><span>r<sub>s</sub></span></div>
+
+        <div class="key" id="k">t</div>
+        <div class="key" id="k">u</div>
+        <div class="key" id="k"><span>v<sub>w</sub></span></div>
+        <div class="key" id="k">x</div>
+        <div class="key" id="k">y</div>
+        <div class="key" id="k">z</div>
+
+        <hr/>
+
+        <div class="key" id="kSup"><span>a<sup>x</sup></span></div>
+        <div class="key" id="k">&gt;</div>
+        <div class="key" id="k">&lt;</div>
+        <div class="key" id="kExp"><span>e<sup>x</sup></span></div>
+        <div class="key" id="kLog">log</div>
+        <div class="key" id="kArc">arc</div>
+
+        <div class="key" id="kSub"><span>a<sub>x</sub></span></div>
+        <div class="key" id="k">&and;</div>
+        <div class="key" id="k">&or;</div>
+        <div class="key" id="k">&not;</div>
+        <div class="key" id="kSqrt">&radic;</div>
+        <div class="key" id="kSin">sin</div>
+
+        <hr/>
+
+        <div class="key" id="k">=</div>
+        <div class="key" id="kDiv">/</div>
+        <div class="key" id="k7">7</div>
+        <div class="key" id="k8">8</div>
+        <div class="key" id="k9">9</div>
+        <div class="key" id="kCos">cos</div>
+
+        <div class="key" id="k">( )</div>
+        <div class="key" id="kTimes">&times;</div>
+        <div class="key" id="k4">4</div>
+        <div class="key" id="k5">5</div>
+        <div class="key" id="k6">6</div>
+        <div class="key" id="kTan">tan</div>
+
+        <div class="key" id="k">!</div>
+        <div class="key" id="kMinus">-</div>
+        <div class="key" id="k1">1</div>
+        <div class="key" id="k2">2</div>
+        <div class="key" id="k3">3</div>
+        <div class="key" id="kBksp">&#9003;</div>
+
+        <div class="key" id="kPi">&pi;</div>
+        <div class="key" id="kPlus">+</div>
+        <div class="key" id="k0">0</div>
+        <div class="key" id="kDot">.</div>
+        <div class="key" id="kComma">,</div>
+        <div class="key" id="kEnter">&#9166;</div>
+
+        </div>
+    </div>
+
+    <script type="module">
+
+        function onKey(evt){
+            let id = evt.currentTarget.id;
+            switch(id){
+            case "k0":
+                writeInput("0");
+                break;
+            case "k1":
+                writeInput("1");
+                break;
+            case "k2":
+                writeInput("2");
+                break;
+            case "k3":
+                writeInput("3");
+                break;
+            case "k4":
+                writeInput("4");
+                break;
+            case "k5":
+                writeInput("5");
+                break;
+            case "k6":
+                writeInput("6");
+                break;
+            case "k7":
+                writeInput("7");
+                break;
+            case "k8":
+                writeInput("8");
+                break;
+            case "k9":
+                writeInput("9");
+                break;
+            case "kDiv":
+                writeInput("/");
+                break;
+            case "kTimes":
+                writeInput("*");
+                break;
+            case "kMinus":
+                writeInput("-");
+                break;
+            case "kPlus":
+                writeInput("+");
+                break;
+            case "kSqrt":
+                writeCmd("\\sqrt");
+                break;
+            case "kArc":
+                writeInput("\\arc");
+                break;
+            case "kSin":
+                writeCmd("\\sin");
+                break;
+            case "kCos":
+                writeCmd("\\cos");
+                break;
+            case "kTan":
+                writeCmd("\\tan");
+                break;
+            case "kLog":
+                writeCmd("\\log");
+                break;
+            case "kExp":
+                writeInput("e^");
+                break;
+            case "kPi":
+                writeCmd("\\pi");
+                break;
+            case "kSup":
+                writeInput("^");
+                break;
+            case "kSub":
+                writeInput("_");
+                break;
+            case "kDot":
+                writeInput(".");
+                break;
+            case "kComma":
+                writeInput(",");
+                break;
+            case "kBksp":
+                writeKey("Backspace");
+                break;
+            } // sw
+            focusInput();
+        }// key
+
+        MQ.MathField($('#inputContainer')[0]);
+
+        function getInput(){
+            return MQ($('#inputContainer')[0]).latex();
+        }
+
+        function setInput(input){
+            MQ($('#inputContainer')[0]).latex(input);
+        }
+
+        function writeInput(input){
+            MQ($('#inputContainer')[0]).typedText(input);
+        }
+
+        function writeCmd(input){
+            MQ($('#inputContainer')[0]).cmd(input);
+        }
+
+        function writeKey(input){
+            MQ($('#inputContainer')[0]).keystroke(input);
+        }
+
+        function focusInput(input){
+            MQ($('#inputContainer')[0]).focus();
+        }        
+
+        function tex2formula(tex){
+            tex=tex.replace(/\\left/g, "");
+            tex=tex.replace(/\\right/g, "");
+            tex=tex.replace(/\\ /g, " ");
+            tex=tex.replace(/\{/g, "(");
+            tex=tex.replace(/\}/g, ")");
+
+            return tex;
+        }
+
+        var sin = Math.sin, cos = Math.cos, tan = Math.tan;
+        var asin = Math.asin, acos = Math.acos, atan = Math.atan;
+        var exp = Math.exp, log = Math.log;
+        var sqrt = Math.sqrt;
+        var pi = Math.PI;
+        var e = function(){return Math.exp(1);};
+        var res;
+
+        function process(){            
+            const tex = getInput();
+            console.log(tex);
+            const input = tex2formula(tex);
+            console.log(input);
+
+            const tree_node = parser.parse_chunk(input+"\n"); // Using the imported function
+            const code = tree_node.generate([],"window");
+            
+            console.log(code);
+            let ev = eval(code);
+
+            // update "res" variable
+            let prev_res = res;
+            res = function(){
+                let n = arguments[0] || 1;
+                if(n==1)
+                    return ev;
+                else
+                    return prev_res(n-1);
+            };
+
+            let number = (typeof ev == "function" ? false : ev);
+            let html = document.getElementById('output').innerHTML;
+            document.getElementById('output').innerHTML = html + (number ? input + " = " + number : input) + "<br/>\n";
+
+            setInput('');
+            focusInput();
+        };
+
+        $('.key').click(onKey);
+
+        document.getElementById('kEnter').addEventListener('click', process);
+        document.getElementById('inputContainer').addEventListener('keypress', (event)=>{
+            if(event.key === 'Enter')
+                process();
+        });
+        focusInput();
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calc-container {
+    text-align: center;
+    width: 100%;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.input-bar, .mq-editable-field.mq-focused {
+    display: inline-block;
+    min-width: 270px;
+    max-width: 584px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: monospace;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.input-button {
+    margin: 0 4px;
+    padding: 10px 20px;
+    border: 1px solid #f2f2f2;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.input-button:hover {
+    border: 1px solid #c6c6c6;
+    background-color: #f8f8f8;
+}
+
+#output{
+    font-size: 18px;
+    font-family:monospace;
+}
+
+#keyboard-container{
+    display: inline-block;
+    margin-top: 1ex;
+    background: lightgray;
+    width: 32ex;
+    padding: 2pt;
+    border-radius: 4px;
+}
+
+.key{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 4ex;
+    height: 4ex;
+    margin: 2pt;
+}
