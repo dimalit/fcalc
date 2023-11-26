@@ -346,8 +346,8 @@ function parse_frac(){
 function parse_super(){
     console.error(`Superscript at ${row} ${column}`);
 
-    if(is_name(peektoken()) || is_literal(peektoken()))
-        return new raw_node(gettoken());
+    if(is_name(peek()) || is_literal(peek()))
+        return new raw_node(getc());
     assert(gettoken()=="(", "Expected expression here");
     let res = parse_expression();
     assert(gettoken()==")", "Expected closing bracket here");

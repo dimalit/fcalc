@@ -69,7 +69,7 @@ function term_node(a,b,c){
 //        |  \name "^" super power
 //        | "(" expression ")" ^ super
 
-// super ::= raw
+// super ::= char
 //        |  "(" expression ")"
 
 function frac_node(a,b){
@@ -84,6 +84,9 @@ function power_node(a,b){
 
 // call ::= name "(" expression, ... ")"
 //       |  \name term
+//       |  name "_" term
+// TODO accept list of parameters
+//       |  name "_" "(" expression ")"
 function call_node(){
     this.name = null;
     if(arguments.length > 0)
