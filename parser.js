@@ -69,7 +69,8 @@ function assert(cond, message){
 }
 
 function peek(){
-    return buffer[0];
+    let n = arguments[0] || 0;
+    return buffer[n];
 }
 
 function getc(){
@@ -260,9 +261,15 @@ function is_lhs(){
         return false;
     if(peektoken(1)=='=')
         return true;
-    if(peektoken(1)!='(')
+    let pos = 1;
+    if(peektoken(pos)=='_'){  // either _( or _i=
+        ++pos;
+        if(peektoken(pos+1) == '=')
+            return true;
+        // else just ignore _
+    }
+    if(peektoken(pos++)!='(')
         return false;
-    let pos = 2;
     while(peektoken(pos)!=')'){
         if(!is_name(peektoken(pos)) && !is_literal(peektoken(pos)))
             return false;
@@ -285,11 +292,24 @@ function parse_lhs(){
     let name = gettoken();
     let res = new lhs_node(name);
     let literal = false;
+
+    if(peektoken()=="_"){
+        gettoken();     // _
+        // f_i
+        if(peek(1)=='='){
+            let arg = gettoken();
+            assert(is_name(arg) || is_literal(arg), `"${arg}" should be name or literal`);
+            res.arguments.push(arg);
+            literal = is_literal(arg);
+        }
+        // else f_(i,j)
+    }
+
     if(peektoken()=='('){
         gettoken(); // (
         while(peektoken()!=")"){
             let arg = gettoken();
-            assert(is_name(arg), `"${arg}" should be name or literal`);
+            assert(is_name(arg) || is_literal(arg), `"${arg}" should be name or literal`);
             res.arguments.push(arg);
             if(+arg==arg)
                 literal = true;
@@ -308,7 +328,19 @@ function parse_call(){
     assert(is_name(peektoken()), `"${peektoken()}" should be name`);
     let name = gettoken();
     let builtin = name.startsWith("\\");    // \sin \tan etc
+    let underscore = (peek()=='_');
     let res = new call_node(name);
+
+    if(underscore){
+        assert(!builtin, "Subscript cannot be used with standard functions");
+        getc();     // _
+        // single-character argument
+        if(peek()!="("){
+            res.arguments.push(new raw_node(getc()));
+            return res;
+        }
+        //esel parse as usual
+    }
 
     assert(builtin || gettoken()=="(", "Expected \"(\" for call arguments"); // (
 
@@ -381,7 +413,8 @@ function parse_power(){
         }
         return parse_call();
     }
-    if(peektoken(1)=="("){
+    // TODO Use subscripts as parts of the names too!
+    if(peektoken(1)=="(" || peektoken(1)=="_"){
         let call = parse_call();
         // f(x)^n
         if(peektoken()=="^"){

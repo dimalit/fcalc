@@ -82,11 +82,11 @@ function power_node(a,b){
     this.top = b;
 }
 
-// call ::= name "(" expression, ... ")"
+// call ::= name ["_"] "(" expression, ... ")"
 //       |  \name term
 //       |  name "_" term
 // TODO accept list of parameters
-//       |  name "_" "(" expression ")"
+//       |  name "_" char
 function call_node(){
     this.name = null;
     if(arguments.length > 0)
