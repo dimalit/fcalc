@@ -18,8 +18,7 @@ body {
 
 .input-bar, .mq-editable-field.mq-focused {
     display: inline-block;
-    min-width: 270px;
-    max-width: 584px;
+    width: 29ex;
     padding: 10px;
     font-size: 18px;
     font-family: monospace;
@@ -48,13 +47,19 @@ body {
     font-family:monospace;
 }
 
+#output p{
+    margin: 0px;
+}
+
 #keyboard-container{
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     display: inline-block;
     margin-top: 1ex;
-    background: lightgray;
-    width: 32ex;
-    padding: 2pt;
-    border-radius: 4px;
+    width: 33ex;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
 }
 
 .key{
@@ -62,7 +67,8 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #f2f2f2;
-    border-radius: 4px;
+    border-radius: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
     cursor: pointer;
     width: 4ex;
     height: 4ex;
