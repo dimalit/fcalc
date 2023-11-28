@@ -97,21 +97,21 @@ function call_node(){
 }
 
 // disj ::= conj
-//       |  disj || conj
+//       |  disj "\vee" conj
 function disj_node(a,b){
     this.left_disj = a;
-    this.right_conj = c;
+    this.right_conj = b;
 }
 
 // conj ::= maybenot
-//       |  conj && maybenot
+//       |  conj "\wedge" maybenot
 function conj_node(a,b){
     this.left_conj = a;
     this.right_maybenot = b;
 }
 
 // maybenot ::= condterm
-//           |  "!" condterm
+//           |  "\neg" condterm
 function not_node(arg){
     this.val = arg;
 }

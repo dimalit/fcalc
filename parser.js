@@ -147,7 +147,7 @@ dict_detector.prototype.reset = function(){
 }
 dict_detector.prototype.consume = function(c){
 
-    let dict = ['\\ge', '\\le', '\\frac', '\\cdot', '\\sin', '\\cos', '\\tan', '\\sqrt', '\\exp', '\\log', '\\pi'];
+    let dict = ['\\ge', '\\le', '\\frac', '\\cdot', '\\sin', '\\cos', '\\tan', '\\sqrt', '\\exp', '\\log', '\\pi', '\\vee', '\\wedge'];
 
     if(!this.valid)
         return false;
@@ -243,7 +243,8 @@ function undo(){
 }
 
 function is_name(arg){
-    return arg.match(/\\*[A-Za-z]+/) == arg;
+    let not_names = ["\\le", "\\ge", "\\vee", "\\wedge"];
+    return (arg.match(/\\*[A-Za-z]+/) == arg && ! not_names.includes(arg));
 }
 
 function is_literal(val){
@@ -540,11 +541,6 @@ function parse_condterm(){
 
     let res = parse_expression();
 
-    if(res in raw_node){
-        assert(res.val=="true" || res.val=="false", "Only true and false literals are accepted as boolean expressions");
-        return res;
-    }
-
     let op = gettoken();
     if(op=="\\ge")
         op = ">=";
@@ -552,30 +548,39 @@ function parse_condterm(){
         op = "<=";
     else if(op=="=")
         op = "==";
+    else
+        assert(op=="<" || op==">", "Invalid boolean operator");
+
     return new condterm_node(res, op, parse_expression());
 }
 
 function parse_maybenot(){
+    console.error(`Maybenot at ${row} ${column}`);
+
     let val = peektoken();
-    if(val!="!")
+    if(val!="\\neg")
         return parse_condterm();
     gettoken();     // !
     return new not_node(parse_condterm());
 }
 
 function parse_conj(){
+    console.error(`Conj at ${row} ${column}`);
+
     let res = parse_maybenot();
-    while(peektoken()=="&&"){
-        gettoken(); // &&
+    while(peektoken()=="\\wedge"){
+        gettoken(); // \\wedge
         res = new conj_node(res, parse_maybenot());
     } // while
     return res;
 }
 
 function parse_disj(){
+    console.error(`Disj at ${row} ${column}`);
+
     let res = parse_conj();
-    while(peektoken()=="||"){
-        gettoken(); // ||
+    while(peektoken()=="\\vee"){
+        gettoken(); // \\vee
         res = new disj_node(res, parse_conj());
     } // while
     return res;
