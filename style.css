@@ -75,3 +75,14 @@ body {
     height: 4ex;
     margin: 2pt;
 }
+
+.key#kEnter{
+    background: #4285f4;
+    border-color: #4285f4;
+    color: white;
+}
+.key#kC{
+    background: #85f442;
+    border-color: #85f442;
+    color: white;
+}

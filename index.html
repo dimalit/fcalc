@@ -30,35 +30,35 @@
 
         <div id="keyboard-container">
 
-        <div class="key" id="k">a</div>
-        <div class="key" id="k">b</div>
-        <div class="key" id="k"><span>c<sub>de</sub></span></div>
-        <div class="key" id="k">f</div>
-        <div class="key" id="k">g</div>
-        <div class="key" id="k">h</div>
+        <div class="key" id="kA">a</div>
+        <div class="key" id="kB">b</div>
+        <div class="key" id="kCde"><span>c<sub>de</sub></span></div>
+        <div class="key" id="kF">f</div>
+        <div class="key" id="kG">g</div>
+        <div class="key" id="kH">h</div>
 
-        <div class="key" id="k">i</div>
-        <div class="key" id="k"><span>j<sub>k</sub></span></div>
-        <div class="key" id="k">l</div>
-        <div class="key" id="k">m</div>
-        <div class="key" id="k"><span>n<sub>opq</sub></span></div>
-        <div class="key" id="k"><span>r<sub>s</sub></span></div>
+        <div class="key" id="kI">i</div>
+        <div class="key" id="kJk"><span>j<sub>k</sub></span></div>
+        <div class="key" id="kL">l</div>
+        <div class="key" id="kM">m</div>
+        <div class="key" id="kNopq"><span>n<sub>opq</sub></span></div>
+        <div class="key" id="kRs"><span>r<sub>s</sub></span></div>
 
-        <div class="key" id="k">t</div>
-        <div class="key" id="k">u</div>
-        <div class="key" id="k"><span>v<sub>w</sub></span></div>
-        <div class="key" id="k">x</div>
-        <div class="key" id="k">y</div>
-        <div class="key" id="k">z</div>
+        <div class="key" id="kT">t</div>
+        <div class="key" id="kU">u</div>
+        <div class="key" id="kVw"><span>v<sub>w</sub></span></div>
+        <div class="key" id="kX">x</div>
+        <div class="key" id="kY">y</div>
+        <div class="key" id="kZ">z</div>
 
         <hr/>
 
         <div class="key" id="kSub"><span>a<sub>x</sub></span></div>
         <div class="key" id="kSup"><span>a<sup>x</sup></span></div>
         <div class="key" id="k">( )</div>
-        <div class="key" id="k">=</div>
-        <div class="key" id="k">&lt;</div>
-        <div class="key" id="k">&gt;</div>
+        <div class="key" id="kAssign">=</div>
+        <div class="key" id="kLess">&lt;</div>
+        <div class="key" id="kGreater">&gt;</div>
 
         <div class="key" id="kPi">&pi;</div>
         <div class="key" id="k">!</div>
@@ -74,21 +74,21 @@
         <div class="key" id="k7">7</div>
         <div class="key" id="k8">8</div>
         <div class="key" id="k9">9</div>
-        <div class="key" id="kC">C</div>
+        <div class="key" id="kEnter">&#9166;</div>
 
         <div class="key" id="kCos">cos</div>
         <div class="key" id="kTimes">&times;</div>
         <div class="key" id="k4">4</div>
         <div class="key" id="k5">5</div>
         <div class="key" id="k6">6</div>
-        <div class="key" id="kBksp">&#9003;</div>
+        <div class="key" id="kC">C</div>
 
         <div class="key" id="kLog">log</div>
         <div class="key" id="kMinus">-</div>
         <div class="key" id="k1">1</div>
         <div class="key" id="k2">2</div>
         <div class="key" id="k3">3</div>
-        <div class="key" id="kEnter">&#9166;</div>
+        <div class="key" id="kBksp">&#9003;</div>
 
         <div class="key" id="kSqrt">&radic;</div>
         <div class="key" id="kPlus">+</div>
@@ -185,6 +185,66 @@
                 break;
             case "kC":
                 setInput("");
+                break;
+            case "kAssign":
+                writeInput("=");
+                break;
+            case "kMod":
+                writeInput("mod");
+                break;
+            case "kA":
+                writeInput("a");
+                break;
+            case "kB":
+                writeInput("b");
+                break;
+            case "kCde":
+                writeInput("c");
+                break;
+            case "kF":
+                writeInput("f");
+                break;
+            case "kG":
+                writeInput("g");
+                break;
+            case "kH":
+                writeInput("h");
+                break;
+            case "kI":
+                writeInput("i");
+                break;
+            case "kJk":
+                writeInput("j");
+                break;
+            case "kL":
+                writeInput("l");
+                break;
+            case "kM":
+                writeInput("m");
+                break;
+            case "kNopq":
+                writeInput("n");
+                break;
+            case "kRs":
+                writeInput("r");
+                break;
+            case "kT":
+                writeInput("t");
+                break;
+            case "kU":
+                writeInput("u");
+                break;
+            case "kVw":
+                writeInput("v");
+                break;
+            case "kX":
+                writeInput("x");
+                break;
+            case "kY":
+                writeInput("y");
+                break;
+            case "kZ":
+                writeInput("z");
                 break;
             } // sw
             focusInput();
