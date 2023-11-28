@@ -57,45 +57,45 @@
         <div class="key" id="kSup"><span>a<sup>x</sup></span></div>
         <div class="key" id="k">( )</div>
         <div class="key" id="k">=</div>
-        <div class="key" id="k">&nbsp;</div>
-        <div class="key" id="kArc">arc</div>
+        <div class="key" id="k">&lt;</div>
+        <div class="key" id="k">&gt;</div>
 
-        <div class="key" id="k">&nbsp;</div>
-        <div class="key" id="k">&nbsp;</div>
-        <div class="key" id="k">&nbsp;</div>
-        <div class="key" id="k">&nbsp;</div>
+        <div class="key" id="kPi">&pi;</div>
         <div class="key" id="k">!</div>
-        <div class="key" id="kSin">sin</div>
+        <div class="key" id="kFloor">⌊ ⌋</div>
+        <div class="key" id="kMod">mod</div>
+        <div class="key" id="kComma">,</div>
+        <div class="key" id="kAnd">&and;</div>
 
         <hr/>
 
-        <div class="key" id="kExp"><span>e<sup>x</sup></span></div>
+        <div class="key" id="kSin">sin</div>
         <div class="key" id="kDiv">/</div>
         <div class="key" id="k7">7</div>
         <div class="key" id="k8">8</div>
         <div class="key" id="k9">9</div>
-        <div class="key" id="kCos">cos</div>
+        <div class="key" id="kC">C</div>
 
-        <div class="key" id="kLog">log</div>
+        <div class="key" id="kCos">cos</div>
         <div class="key" id="kTimes">&times;</div>
         <div class="key" id="k4">4</div>
         <div class="key" id="k5">5</div>
         <div class="key" id="k6">6</div>
-        <div class="key" id="kTan">tan</div>
+        <div class="key" id="kBksp">&#9003;</div>
 
-        <div class="key" id="kSqrt">&radic;</div>
+        <div class="key" id="kLog">log</div>
         <div class="key" id="kMinus">-</div>
         <div class="key" id="k1">1</div>
         <div class="key" id="k2">2</div>
         <div class="key" id="k3">3</div>
-        <div class="key" id="kBksp">&#9003;</div>
+        <div class="key" id="kEnter">&#9166;</div>
 
-        <div class="key" id="kPi">&pi;</div>
+        <div class="key" id="kSqrt">&radic;</div>
         <div class="key" id="kPlus">+</div>
         <div class="key" id="k0">0</div>
         <div class="key" id="kDot">.</div>
-        <div class="key" id="kComma">,</div>
-        <div class="key" id="kEnter">&#9166;</div>
+        <div class="key" id="kLeft">&larr;</div>
+        <div class="key" id="kRight">&rarr;</div>
 
         </div>
     </div>
@@ -150,23 +150,14 @@
             case "kSqrt":
                 writeCmd("\\sqrt");
                 break;
-            case "kArc":
-                writeInput("\\arc");
-                break;
             case "kSin":
                 writeCmd("\\sin");
                 break;
             case "kCos":
                 writeCmd("\\cos");
                 break;
-            case "kTan":
-                writeCmd("\\tan");
-                break;
             case "kLog":
                 writeCmd("\\log");
-                break;
-            case "kExp":
-                writeInput("e^");
                 break;
             case "kPi":
                 writeCmd("\\pi");
@@ -185,6 +176,15 @@
                 break;
             case "kBksp":
                 writeKey("Backspace");
+                break;
+            case "kLeft":
+                writeKey("Left");
+                break;
+            case "kRight":
+                writeKey("Right");
+                break;
+            case "kC":
+                setInput("");
                 break;
             } // sw
             focusInput();
