@@ -258,7 +258,7 @@
 
             let number = (typeof ev == "function" ? false : ev);
             let span = $('<span></span>');
-            span.html(number ? input + " = " + number : input);
+            span.html(number ? tex + " = " + number : tex);
             MQ.StaticMath(span[0]);
             $('<p></p>').append(span).appendTo($("#output"));
 
