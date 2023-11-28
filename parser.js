@@ -20,6 +20,7 @@ const {
     lhs_node,
     expression_node,
     term_node,
+    unary_sign_node,
     call_node,
     frac_node,
     power_node,
@@ -467,6 +468,11 @@ function _deleted_parse_operand(){
 
 function parse_term(){
     console.error(`Term at ${row} ${column}`);
+
+    if(peektoken()=="+" || peektoken()=="-"){
+        let sign = gettoken();  // + or -
+        return new unary_sign_node(sign, parse_term());
+    }
 
     let res = parse_power();
     // loop all

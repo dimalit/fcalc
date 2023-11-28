@@ -319,9 +319,9 @@
                     return prev_res(n-1);
             };
 
-            let number = (typeof ev == "function" ? false : ev);
+            let func = (typeof ev == "function");
             let span = $('<span></span>');
-            span.html(number ? tex + " = " + number : tex);
+            span.html(func ? tex : tex + " = " + ev);
             MQ.StaticMath(span[0]);
             $('<p></p>').append(span).appendTo($("#output"));
 

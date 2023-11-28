@@ -20,6 +20,7 @@ const {
     lhs_node,
     expression_node,
     term_node,
+    unary_sign_node,
     call_node,
     frac_node,
     power_node,
@@ -133,7 +134,12 @@ expression_node.prototype.generate = function(){
 
 term_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return '( (' + this.left_term.generate(local_names) + ')' + this.operator + '(' + this.right_power.generate(local_names) + ') )';
+    return '('+this.sign+'(' + this.left_term.generate(local_names) + ')' + this.operator + '(' + this.right_power.generate(local_names) + ') )';
+}
+
+unary_sign_node.prototype.generate = function(){
+    let local_names = arguments[0] || [];
+    return '('+this.sign+this.term.generate(local_names)+')';
 }
 
 power_node.prototype.generate = function(){

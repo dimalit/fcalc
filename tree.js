@@ -55,10 +55,16 @@ function expression_node(a,b,c){
 
 // term ::= power
 //       |  term ["\cdot"] power
+//       | "+"|"-" term
 function term_node(a,b,c){
     this.left_term = a;
     this.right_power = c;
     this.operator = b;
+}
+
+function unary_sign_node(sign, term){
+    this.sign = sign;
+    this.term = term;
 }
 
 // power ::= raw ["^" super]
@@ -133,6 +139,7 @@ return {
     lhs_node:    lhs_node,
     expression_node:    expression_node,
     term_node:    term_node,
+    unary_sign_node: unary_sign_node,
     call_node:    call_node,
     frac_node:  frac_node,
     power_node: power_node,
