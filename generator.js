@@ -134,7 +134,7 @@ expression_node.prototype.generate = function(){
 
 term_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return '('+this.sign+'(' + this.left_term.generate(local_names) + ')' + this.operator + '(' + this.right_power.generate(local_names) + ') )';
+    return '( (' + this.left_term.generate(local_names) + ')' + this.operator + '(' + this.right_power.generate(local_names) + ') )';
 }
 
 unary_sign_node.prototype.generate = function(){
