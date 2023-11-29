@@ -18,13 +18,17 @@ body {
 
 .input-bar, .mq-editable-field.mq-focused {
     display: inline-block;
-    width: 29ex;
-    padding: 10px;
+    width: 37ex;
     font-size: 18px;
     font-family: monospace;
     border: 1px solid #dfe1e5;
-    border-radius: 24px;
+    border-radius: 4ex;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.input-bar .mq-root-block {
+    margin-top: 2ex;
+    margin-bottom: 2ex;
 }
 
 .input-button {
@@ -53,13 +57,13 @@ body {
 
 #keyboard-container{
     border: 1px solid #dfe1e5;
-    border-radius: 24px;
+    border-radius: 4ex;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     display: inline-block;
     margin-top: 1ex;
-    width: 33ex;
-    padding-top: 3pt;
-    padding-bottom: 3pt;
+    width: 44ex;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
 }
 
 .key{
@@ -67,13 +71,13 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #f2f2f2;
-    border-radius: 24px;
+    border-radius: 4ex;
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
     cursor: pointer;
-    width: 4ex;
-    height: 4ex;
-    margin: 2pt;
+    width: 6ex;
+    height: 6ex;
+    margin: 1pt;
 }
 
 .key#kEnter{
@@ -81,7 +85,7 @@ body {
     border-color: #4285f4;
     color: white;
 }
-.key#kC{
+.key#kCC{
     background: #85f442;
     border-color: #85f442;
     color: white;

@@ -32,7 +32,8 @@
 
         <div class="key" id="kA">a</div>
         <div class="key" id="kB">b</div>
-        <div class="key" id="kCde"><span>c<sub>de</sub></span></div>
+        <div class="key" id="kC">c</div>
+        <div class="key" id="kDe"><span>d<sub>e</sub></span></div>
         <div class="key" id="kF">f</div>
         <div class="key" id="kG">g</div>
         <div class="key" id="kH">h</div>
@@ -42,30 +43,29 @@
         <div class="key" id="kL">l</div>
         <div class="key" id="kM">m</div>
         <div class="key" id="kNopq"><span>n<sub>opq</sub></span></div>
-        <div class="key" id="kRs"><span>r<sub>s</sub></span></div>
+        <div class="key" id="kR"><span>r</span></div>
+        <div class="key" id="kS"><span>s</span></div>
 
-        <div class="key" id="kT">t</div>
-        <div class="key" id="kU">u</div>
-        <div class="key" id="kVw"><span>v<sub>w</sub></span></div>
+        <div class="key" id="kTu"><span>t<sub>u</sub></span></div>
+        <div class="key" id="kVw"><span>t<sub>w</sub></span></div>
         <div class="key" id="kX">x</div>
-        <div class="key" id="kY">y</div>
-        <div class="key" id="kZ">z</div>
+        <div class="key" id="kYz">y<sub>z</sub></div>
 
         <hr/>
 
-        <div class="key" id="kSub"><span>a<sub>x</sub></span></div>
-        <div class="key" id="kSup"><span>a<sup>x</sup></span></div>
-        <div class="key" id="k">( )</div>
-        <div class="key" id="kGreek">&alpha;&beta;</div>
-        <div class="key" id="kUpper">aA</div>
-        <div class="key" id="kAssign">=</div>
+        <div class="key" id="kSub"><span>( )<sub>n</sub></span></div>
+        <div class="key" id="kSup"><span>( )<sup>n</sup></span></div>
+        <div class="key" id="kLeftBrace">(</div>
+        <div class="key" id="kRightBrace">)</div>
+        <div class="key" id="kLess"><span>&lt;<sub>&and;</sub></span></div>
+        <div class="key" id="kGreater"><span>&gt;<sub>&or;&not;</sub></span></div>
 
         <div class="key" id="kPi">&pi;</div>
         <div class="key" id="k">!</div>
         <div class="key" id="kMod">mod</div>
-        <div class="key" id="kLess">&lt;</div>
-        <div class="key" id="kGreater">&gt;</div>
-        <div class="key" id="kAnd">&and;&or;&not;</div>
+        <div class="key" id="kGreek">&alpha;&beta;</div>
+        <div class="key" id="kUpper">aA</div>
+        <div class="key" id="kAssign">=</div>
 
         <hr/>
 
@@ -81,7 +81,7 @@
         <div class="key" id="k4">4</div>
         <div class="key" id="k5">5</div>
         <div class="key" id="k6">6</div>
-        <div class="key" id="kC">C</div>
+        <div class="key" id="kCC">C</div>
 
         <div class="key" id="kLog">log</div>
         <div class="key" id="kMinus">-</div>
@@ -183,7 +183,7 @@
             case "kRight":
                 writeKey("Right");
                 break;
-            case "kC":
+            case "kCC":
                 setInput("");
                 break;
             case "kAssign":
@@ -198,8 +198,11 @@
             case "kB":
                 writeInput("b");
                 break;
-            case "kCde":
+            case "kC":
                 writeInput("c");
+                break;
+            case "kDe":
+                writeInput("d");
                 break;
             case "kF":
                 writeInput("f");
@@ -225,14 +228,14 @@
             case "kNopq":
                 writeInput("n");
                 break;
-            case "kRs":
+            case "kR":
                 writeInput("r");
                 break;
-            case "kT":
-                writeInput("t");
+            case "kS":
+                writeInput("r");
                 break;
-            case "kU":
-                writeInput("u");
+            case "kTu":
+                writeInput("t");
                 break;
             case "kVw":
                 writeInput("v");
@@ -240,14 +243,20 @@
             case "kX":
                 writeInput("x");
                 break;
-            case "kY":
+            case "kYz":
                 writeInput("y");
                 break;
-            case "kZ":
-                writeInput("z");
+            case "kLeftBrace":
+                writeInput("(");
                 break;
-            case "kAnd":
-                writeCmd("\\wedge");
+            case "kRightBrace":
+                writeInput(")");
+                break;
+            case "kLess":
+                writeInput("<");
+                break;
+            case "kGreater":
+                writeInput(">");
                 break;
             } // sw
             focusInput();
