@@ -396,8 +396,10 @@ function parse_power(){
         gettoken();// (
         let expr = parse_expression();
         assert(gettoken()==")", "No closing bracket here");
-        if(peektoken()=="^")
+        if(peektoken()=="^"){
+            gettoken(); // ^
             return new power_node(expr, parse_super());
+        }
         else
             return expr;
     } // (
