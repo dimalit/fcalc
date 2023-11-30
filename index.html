@@ -47,7 +47,7 @@
         <div class="key" id="kS"><span>s</span></div>
 
         <div class="key" id="kTu"><span>t<sub>u</sub></span></div>
-        <div class="key" id="kVw"><span>t<sub>w</sub></span></div>
+        <div class="key" id="kVw"><span>V<sub>w</sub></span></div>
         <div class="key" id="kX">x</div>
         <div class="key" id="kYz">y<sub>z</sub></div>
 
@@ -101,6 +101,8 @@
     </div>
 
     <script type="module">
+
+        let prevKey = '';   // used for multi-keys
 
         function onKey(evt){
             let id = evt.currentTarget.id;
@@ -169,10 +171,13 @@
                 writeInput("_");
                 break;
             case "kDot":
-                writeInput(".");
-                break;
-            case "kComma":
-                writeInput(",");
+                if(prevKey!="kDot")
+                    writeInput(".");
+                else {
+                    writeKey("Backspace");
+                    writeInput(",");
+                    id="kComma";
+                }
                 break;
             case "kBksp":
                 writeKey("Backspace");
@@ -202,7 +207,13 @@
                 writeInput("c");
                 break;
             case "kDe":
-                writeInput("d");
+                if(prevKey!="kDe")
+                    writeInput("d");
+                else {
+                    writeKey("Backspace");
+                    writeInput("e");
+                    id="kE";
+                }
                 break;
             case "kF":
                 writeInput("f");
@@ -217,7 +228,13 @@
                 writeInput("i");
                 break;
             case "kJk":
-                writeInput("j");
+                if(prevKey!="kJk")
+                    writeInput("j");
+                else {
+                    writeKey("Backspace");
+                    writeInput("k");
+                    id="kK";
+                }
                 break;
             case "kL":
                 writeInput("l");
@@ -226,25 +243,57 @@
                 writeInput("m");
                 break;
             case "kNopq":
-                writeInput("n");
+                if(!["kNopq", "kO", "kP"].includes(prevKey))
+                    writeInput("n");
+                else if(prevKey=="kNopq") {
+                    writeKey("Backspace");
+                    writeInput("o");
+                    id="kO";
+                } else if(prevKey=="kO") {
+                    writeKey("Backspace");
+                    writeInput("p");
+                    id="kP";
+                } else if(prevKey=="kP") {
+                    writeKey("Backspace");
+                    writeInput("q");
+                    id="kQ";
+                }
                 break;
             case "kR":
                 writeInput("r");
                 break;
             case "kS":
-                writeInput("r");
+                writeInput("s");
                 break;
             case "kTu":
-                writeInput("t");
+                if(prevKey!="kTu")
+                    writeInput("t");
+                else {
+                    writeKey("Backspace");
+                    writeInput("u");
+                    id="kU";
+                }
                 break;
             case "kVw":
-                writeInput("v");
+                if(prevKey!="kVw")
+                    writeInput("v");
+                else {
+                    writeKey("Backspace");
+                    writeInput("w");
+                    id="kW";
+                }
                 break;
             case "kX":
                 writeInput("x");
                 break;
             case "kYz":
-                writeInput("y");
+                if(prevKey!="kYz")
+                    writeInput("y");
+                else {
+                    writeKey("Backspace");
+                    writeInput("z");
+                    id="kZ";
+                }
                 break;
             case "kLeftBrace":
                 writeInput("(");
@@ -259,6 +308,7 @@
                 writeInput(">");
                 break;
             } // sw
+            prevKey = id;
             focusInput();
         }// key
 
