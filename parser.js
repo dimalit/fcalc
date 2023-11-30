@@ -416,7 +416,7 @@ function parse_power(){
         return parse_call();
     }
     // TODO Use subscripts as parts of the names too!
-    if(peektoken(1)=="(" || peektoken(1)=="_"){
+    if(is_name(name) && (peektoken(1)=="(" || peektoken(1)=="_")){
         let call = parse_call();
         // f(x)^n
         if(peektoken()=="^"){
@@ -477,7 +477,7 @@ function parse_term(){
     let res = parse_power();
     // loop all
     let token = peektoken();
-    while(token!='' && token!="\n" && (token=="\\cdot" || is_literal(token) || is_name(token))){
+    while(token!='' && token!="\n" && (token=="\\cdot" || is_literal(token) || is_name(token) || token=='(')){
         let tmp = new term_node();
         tmp.left_term = res;
         tmp.operator = "*";
