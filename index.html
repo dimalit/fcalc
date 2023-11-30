@@ -388,6 +388,8 @@
             MQ.StaticMath(span[0]);
             $('<p></p>').append(span).appendTo($("#output"));
 
+            $('.calc-container')[0].scrollIntoView({block: "end"});
+
             setInput('');
             focusInput();
         };
