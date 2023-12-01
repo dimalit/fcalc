@@ -1,12 +1,17 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Times New Roman", Symbola, serif;
     height: 100vh;
     margin: 0;
+}
+
+.mathKey {
+    font-style: italic;
 }
 
 .calc-container {
     text-align: center;
     width: 100%;
+    font-size: 16px;
 }
 
 .logo {
@@ -16,9 +21,7 @@ body {
 }
 
 .input-bar, .mq-editable-field.mq-focused {
-    width: 37ex;
-    font-size: 18px;
-    font-family: monospace;
+    width: 42ex;
     border: 1px solid #dfe1e5;
     border-radius: 4ex;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -46,8 +49,6 @@ body {
 
 #output{
     margin-top: 5px;
-    font-size: 18px;
-    font-family:monospace;
 }
 
 #output p{
@@ -63,7 +64,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     margin-top: 1ex;
     margin-bottom: 1ex;
-    width: 44ex;
+    width: 47ex;
     padding-top: 5pt;
     padding-bottom: 5pt;
 }
@@ -77,9 +78,9 @@ body {
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
     cursor: pointer;
-    width: 6ex;
-    height: 6ex;
-    margin: 1pt;
+    width: 6.5ex;
+    height: 6.5ex;
+    margin: 0.5pt;
 }
 
 .key.dark{
