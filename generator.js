@@ -48,6 +48,7 @@ empty_node.prototype.generate = function(){
 
 raw_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
 
     // constant
     if(["\\pi"].includes(this.val))
@@ -56,19 +57,21 @@ raw_node.prototype.generate = function(){
     // local or number
     if(local_names.includes(this.val) || is_literal(this.val))
         return this.val;
+    // global
     else
-        return this.val+"(...arguments)";
+        return namespace_prefix + this.val+"(...arguments)";
 }
 
 function_node.prototype.generate = function(){
 
     let local_names = arguments[0] || [];
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
 
     let result = '';
     for (let i in this.statements) {
-        result += this.statements[i].generate(local_names) + "\n";
+        result += this.statements[i].generate(local_names, arguments[1]) + "\n";
     }
-    result += 'return ' + this.return_expression.generate(local_names) + ";\n";
+    result += 'return ' + this.return_expression.generate(local_names, arguments[1]) + ";\n";
     return result;
 }
 
@@ -89,7 +92,7 @@ statement_node.prototype.generate = function(){
     result += this.lhs.literal ? '' : this.lhs.arguments.join(',')
     result += "){\n";
     result += `if(${this.condition.generate(local_names.concat(this.lhs.arguments))} && ${this.lhs.generate_condition(local_names.concat(this.lhs.arguments))}){\n`
-    result += this.rhs_function.generate(local_names.concat(this.lhs.arguments));
+    result += this.rhs_function.generate(local_names.concat(this.lhs.arguments), arguments[1]);
 
     result += "} else {\n";
 
@@ -112,6 +115,7 @@ lhs_node.prototype.generate_condition = function(){
 
 call_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
 
     // normalize function name
     let name = this.name;
@@ -119,9 +123,9 @@ call_node.prototype.generate = function(){
         name = name.substring(1);
 
     let res = '';
-    res += name+"(";
+    res += namespace_prefix + name+"(";
     for(let i in this.arguments){
-        res += this.arguments[i].generate(local_names)+",";
+        res += this.arguments[i].generate(local_names, arguments[1])+",";
     }
     res += ")";
     return res;
@@ -129,49 +133,58 @@ call_node.prototype.generate = function(){
 
 expression_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return '( (' + this.left_expression.generate(local_names) + ')' + this.operator + '(' + this.right_term.generate(local_names) + ') )';
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return '( (' + this.left_expression.generate(local_names, arguments[1]) + ')' + this.operator + '(' + this.right_term.generate(local_names, arguments[1]) + ') )';
 }
 
 term_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return '( (' + this.left_term.generate(local_names) + ')' + this.operator + '(' + this.right_power.generate(local_names) + ') )';
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return '( (' + this.left_term.generate(local_names, arguments[1]) + ')' + this.operator + '(' + this.right_power.generate(local_names, arguments[1]) + ') )';
 }
 
 unary_sign_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return '('+this.sign+this.term.generate(local_names)+')';
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return '('+this.sign+this.term.generate(local_names, arguments[1])+')';
 }
 
 power_node.prototype.generate = function(){
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
     let local_names = arguments[0] || [];
-    return "Math.pow(" + this.bottom.generate(local_names) + ", " + 
-                 this.top.generate(local_names) + ")";
+    return "Math.pow(" + this.bottom.generate(local_names, arguments[1]) + ", " + 
+                 this.top.generate(local_names, arguments[1]) + ")";
 }
 
 frac_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return "( (" + this.numerator.generate(local_names) + ") / (" + 
-                 this.denominator.generate(local_names) + ") )";
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return "( (" + this.numerator.generate(local_names, arguments[1]) + ") / (" + 
+                 this.denominator.generate(local_names, arguments[1]) + ") )";
 }
 
 disj_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return this.left_disj.generate(local_names) + " || " + this.right_conj.generate(local_names);
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return this.left_disj.generate(local_names, arguments[1]) + " || " + this.right_conj.generate(local_names, arguments[1]);
 }
 
 conj_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return this.left_conj.generate(local_names) + " && " + this.right_maybenot.generate(local_names);
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return this.left_conj.generate(local_names, arguments[1]) + " && " + this.right_maybenot.generate(local_names, arguments[1]);
 }
 
 not_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return "!" + this.val.generate(local_names);
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return "!" + this.val.generate(local_names, arguments[1]);
 }
 
 condterm_node.prototype.generate = function(){
     let local_names = arguments[0] || [];
-    return '( (' + this.left_expression.generate(local_names) + ')' + this.operator + '(' + this.right_expression.generate(local_names) + ') )';
+    let namespace_prefix = arguments[1] ? arguments[1]+"." : "";
+    return '( (' + this.left_expression.generate(local_names, arguments[1]) + ')' + this.operator + '(' + this.right_expression.generate(local_names, arguments[1]) + ') )';
 }
 
 function main(){

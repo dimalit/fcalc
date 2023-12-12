@@ -39,7 +39,7 @@ let buffer = [];
 let undo_buffer = [];
 let undo_stack = [];    // pos,row,column
 
-if (typeof module === 'object' && module.exports) {
+if (false && typeof module === 'object' && module.exports) {
     // Node.js (CommonJS)
     sys_assert = require('assert');
 
