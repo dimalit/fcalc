@@ -3,7 +3,7 @@ import Keyboard from './Keyboard'
 const parser = require('../parser.js');
 require('../generator.js');
 
-const MQ = window.MathQuill;
+const MQ = window.MathQuill.getInterface(2);
 import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'
 
 const $ = window.jQuery;
@@ -39,7 +39,7 @@ export default function App() {
     }
 
     const input = tex2formula(latex);
-    const tree_node = parser.parse_chunk(input+"\n"); // Using the imported function
+    const tree_node = parser.parse_chunk(input+"\n");
     const code = tree_node.generate([], "scope");
 
     console.log("code:");
@@ -65,6 +65,7 @@ export default function App() {
     console.log("text:");
     console.log(text); 
 
+    MQ($('#mathScreen')[0]).latex('');
   } // processInput
 
   return (
