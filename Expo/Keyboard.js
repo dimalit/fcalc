@@ -1,7 +1,5 @@
 import Button from "./Button"
 
-import { StaticMathField } from 'react-mathquill'
-
 import { StyleSheet, Text, View } from 'react-native';
 
 function processResult(){
@@ -252,7 +250,7 @@ export default function Keyboard(props) {
         } // handleKey()
 
     return (
-        <View style={styles.keyboard}>
+        <View style={[props.style, styles.keyboard]}>
 
         <View style={styles.row}>
         <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kA")} title="a"/>
@@ -350,7 +348,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   key: {
-    fontFamily: "'Times New Roman', Symbola, serif"
+    fontFamily: "'Times New Roman', Symbola, serif",
+    fontSize: "115%"
   },
   mathKey:{
     fontStyle: "italic"

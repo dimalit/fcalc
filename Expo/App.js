@@ -1,3 +1,4 @@
+import OutputPane from './OutputPane'
 import Keyboard from './Keyboard'
 
 const parser = require('../parser.js');
@@ -9,7 +10,8 @@ import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'
 const $ = window.jQuery;
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { useState } from 'react';
 
 addStyles();    // mathquill styles
 
@@ -25,6 +27,10 @@ var scope = {
 };
 
 export default function App() {
+
+  const [outputs, setOutputs] = useState([]);
+  const {height} = useWindowDimensions();
+  const windowHeight = height;
 
   function processInput(latex){
 
@@ -64,18 +70,22 @@ export default function App() {
 
     console.log("text:");
     console.log(text); 
+    setOutputs([...outputs, text]);
 
     MQ($('#mathScreen')[0]).latex('');
   } // processInput
 
   return (
-    <View style={styles.container}>
+    <View style={styles.body}>
+    <View style={[styles.container, {height: windowHeight, width: windowHeight/2}]}>
+      <OutputPane formulas={outputs} style={{height:200}}/>
       <EditableMathField
         style={styles.input}
         latex=""
         id="mathScreen"
       />
-      <Keyboard typedText={(input)=>{
+      <Keyboard style={styles.keyboard}
+      typedText={(input)=>{
         MQ($('#mathScreen')[0]).typedText(input);
       }} cmd={(input)=>{
         MQ($('#mathScreen')[0]).cmd(input);
@@ -87,18 +97,23 @@ export default function App() {
       }}/>
       <StatusBar style="auto" />
     </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  body:{
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  container: {
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   input: {
-    width: 245,
+    width: "100%",
     borderWidth: 1,
     borderColor: "#dfe1e5",
     borderRadius: 1000,
@@ -106,6 +121,11 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height:2},
     shadowRadius: 5,
     margin: 10,
-    padding: 10
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  keyboard: {
+    width: "100%",
+    marginBottom: 10
   }
 });

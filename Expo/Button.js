@@ -1,9 +1,19 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {useState} from 'react';
 
 export default function CalcButton(props){
+
+    const [height, setHeight] = useState(40);
+
+    const adjustHeight = function(evt){
+        const {width} = evt.nativeEvent.layout;
+        setHeight(width);
+    }
+
     return(
         <Pressable
-            style = {[styles.button, props.style]}
+            onLayout = {adjustHeight}
+            style = {[styles.button, {height: height}, props.style]}
             onPress = {props.onPress}
         >
         <Text style={props.style}>{props.title}</Text>
@@ -13,7 +23,7 @@ export default function CalcButton(props){
 
 const styles = StyleSheet.create({
     button:{
-        width: 40,
+        width: "15%",
         height: 40,
         alignItems: "center",
         justifyContent: "center",
