@@ -1,6 +1,8 @@
+import Button from "./Button"
+
 import { StaticMathField } from 'react-mathquill'
 
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 function processResult(){
     function process(input){
@@ -312,7 +314,7 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k5")} title="5"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k6")} title="6"/>
         <Button style={styles.key} onPress={()=>handleKey("kTimes")} title="&times;"/>
-        <Button style={styles.key} onPress={()=>handleKey("kBksp")} title="&#900;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kBksp")} title="&#9003;"/>
         </View>
 
         <View style={styles.row}>
@@ -321,7 +323,7 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k2")} title="2"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k3")} title="3"/>
         <Button style={styles.key} onPress={()=>handleKey("kMinus")} title="-"/>
-        <Button style={styles.key} onPress={()=>handleKey("kEnter")} title="&#916;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kEnter")} title="&#9166;"/>
         </View>
 
         <View style={styles.row}>
@@ -340,16 +342,18 @@ export default function Keyboard(props) {
 const styles = StyleSheet.create({
   keyboard: {
     flexDirection: 'column',
-    gap: 4
+    gap: 6
   },
   row: {
     flexDirection: 'row',
-    gap: 4,
+    gap: 6,
     justifyContent: 'space-evenly'
   },
   key: {
+    fontFamily: "'Times New Roman', Symbola, serif"
   },
   mathKey:{
+    fontStyle: "italic"
   },
   dark:{
   },

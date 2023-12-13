@@ -71,6 +71,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <EditableMathField
+        style={styles.input}
         latex=""
         id="mathScreen"
       />
@@ -96,4 +97,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+    width: 245,
+    borderWidth: 1,
+    borderColor: "#dfe1e5",
+    borderRadius: 1000,
+    shadowColor: "rgba(0,0,0,0.2)",
+    shadowOffset: {width: 0, height:2},
+    shadowRadius: 5,
+    margin: 10,
+    padding: 10
+  }
 });
