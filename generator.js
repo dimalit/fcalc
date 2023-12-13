@@ -52,7 +52,7 @@ raw_node.prototype.generate = function(){
 
     // constant
     if(["\\pi"].includes(this.val))
-        return this.val.substring(1);
+        return namespace_prefix+this.val.substring(1);
 
     // local or number
     if(local_names.includes(this.val) || is_literal(this.val))
