@@ -27,5 +27,7 @@ export default function OutputPane(props){
 
 const styles = StyleSheet.create({
     scroll: {
+        flexGrow: 1,
+        justifyContent: "flex-end"
     }
 });

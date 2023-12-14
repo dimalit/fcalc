@@ -7,7 +7,7 @@ export default function CalcButton(props){
 
     const adjustHeight = function(evt){
         const {width} = evt.nativeEvent.layout;
-        setHeight(width);
+        setHeight(width*4/5);
     }
 
     return(

@@ -279,6 +279,8 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kYz")} title="Yz"/>
         </View>
 
+        <View style={styles.hr}/>
+
         <View style={styles.row}>
         <Button style={styles.key} onPress={()=>handleKey("kSub")} title="Sub"/>
         <Button style={styles.key} onPress={()=>handleKey("kSup")} title="Sup"/>
@@ -296,6 +298,8 @@ export default function Keyboard(props) {
         <Button style={styles.key} onPress={()=>handleKey("kUpper")} title="aA"/>
         <Button style={styles.key} onPress={()=>handleKey("kAssign")} title="="/>
         </View>
+
+        <View style={styles.hr}/>
 
         <View style={styles.row}>
         <Button style={styles.key} onPress={()=>handleKey("kSin")} title="sin"/>
@@ -346,6 +350,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 6,
     justifyContent: 'space-evenly'
+  },
+  hr: {
+    marginTop: 1,
+    borderTopWidth: 1,
+    borderTopColor: "#dadce0",
   },
   key: {
     fontFamily: "'Times New Roman', Symbola, serif",
