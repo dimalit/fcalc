@@ -73,17 +73,20 @@ export default function App() {
     setOutputs([...outputs, text]);
 
     MQ($('#mathScreen')[0]).latex('');
+    MQ($('#mathScreen')[0]).keystroke('Backspace');     // enables cursor
   } // processInput
 
   return (
     <View style={styles.body}>
     <View style={[styles.container, {height: windowHeight, width: windowHeight/2}]}>
-      <OutputPane formulas={outputs} style={{height:200}}/>
-      <EditableMathField
-        style={styles.input}
-        latex=""
-        id="mathScreen"
-      />
+      <OutputPane formulas={outputs} style={styles.output}/>
+      <View style={styles.input}>
+        <EditableMathField
+          style={styles.mathScreen}
+          latex=""
+          id="mathScreen"
+        />
+      </View>
       <Keyboard style={styles.keyboard}
       typedText={(input)=>{
         MQ($('#mathScreen')[0]).typedText(input);
@@ -91,9 +94,15 @@ export default function App() {
         MQ($('#mathScreen')[0]).cmd(input);
       }} keystroke={(input)=>{
         MQ($('#mathScreen')[0]).keystroke(input);
-      }} processResult={()=>{
-        const latex = MQ($('#mathScreen')[0]).latex();
-        processInput(latex);
+      }} handleCommand={(cmd)=>{
+        if(cmd=="Enter"){
+            const latex = MQ($('#mathScreen')[0]).latex();
+            processInput(latex);
+        }
+        else if(cmd=="C"){
+            MQ($('#mathScreen')[0]).latex("");
+            MQ($('#mathScreen')[0]).keystroke('Backspace');     // enables cursor
+        }
       }}/>
       <StatusBar style="auto" />
     </View>
@@ -123,6 +132,15 @@ const styles = StyleSheet.create({
     margin: 10,
     paddingTop: 10,
     paddingBottom: 10
+  },
+  mathScreen:{
+    border: "none",
+    marginLeft: 10,
+    marginRight: 10,
+    textAlign: "center"
+  },
+  output:{
+    width: "100%"
   },
   keyboard: {
     width: "100%",

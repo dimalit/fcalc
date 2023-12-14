@@ -34,8 +34,8 @@ export default function Keyboard(props) {
             props.keystroke(input);
         }
 
-        function processResult(){
-            props.processResult();
+        function handleCommand(cmd){
+            props.handleCommand(cmd);
         }
 
         let prevKey = '';   // used for multi-keys
@@ -124,7 +124,7 @@ export default function Keyboard(props) {
                 writeKey("Right");
                 break;
             case "kCC":
-                setInput("");
+                handleCommand("C");
                 break;
             case "kAssign":
                 writeInput("=");
@@ -243,7 +243,7 @@ export default function Keyboard(props) {
                 writeInput(">");
                 break;
             case "kEnter":
-                processResult();
+                handleCommand("Enter");
                 break;
             } // sw
             prevKey = id;
@@ -303,7 +303,7 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k8")} title="8"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k9")} title="9"/>
         <Button style={styles.key} onPress={()=>handleKey("kDiv")} title="/"/>
-        <Button style={styles.key} onPress={()=>handleKey("kCC")} title="C"/>
+        <Button style={[styles.key, styles.cc]} onPress={()=>handleKey("kCC")} title="C"/>
         </View>
 
         <View style={styles.row}>
@@ -321,7 +321,7 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k2")} title="2"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k3")} title="3"/>
         <Button style={styles.key} onPress={()=>handleKey("kMinus")} title="-"/>
-        <Button style={styles.key} onPress={()=>handleKey("kEnter")} title="&#9166;"/>
+        <Button style={[styles.key, styles.enter]} onPress={()=>handleKey("kEnter")} title="&#9166;"/>
         </View>
 
         <View style={styles.row}>
@@ -355,5 +355,16 @@ const styles = StyleSheet.create({
     fontStyle: "italic"
   },
   dark:{
+    backgroundColor: "#dadce0"
   },
+  enter:{
+    backgroundColor: "#4285f4",
+    borderColor: "#4285f4",
+    color: "white"
+  },
+  cc:{
+    backgroundColor: "#85f442",
+    borderColor: "#85f442",
+    color: "white"
+  }
 });
