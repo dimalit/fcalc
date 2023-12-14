@@ -84,8 +84,8 @@ statement_node.prototype.generate = function(){
     let result = '';
     let tmp_name = rand_id()+'_'+this.lhs.name;
     result += `let ${tmp_name} = function(){};\n`;
-    result += `if(typeof(${this.lhs.name}) != 'undefined')\n`;
-    result += `    ${tmp_name} = ${this.lhs.name};\n`;
+    result += `if(typeof(${namespace_prefix}${this.lhs.name}) != 'undefined')\n`;
+    result += `    ${tmp_name} = ${namespace_prefix}${this.lhs.name};\n`;
     result += "else " + (namespace_prefix || "var ") + `${this.lhs.name} = null;\n`;
 
     result += `${namespace_prefix}${this.lhs.name} = function(`;
