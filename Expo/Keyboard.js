@@ -253,55 +253,6 @@ export default function Keyboard(props) {
         <View style={[props.style, styles.keyboard]}>
 
         <View style={styles.row}>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kA")} title="a"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kB")} title="b"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kC")} title="c"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kDe")} title="De"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kF")} title="f"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kG")} title="g"/>
-        </View>
-
-        <View style={styles.row}>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kH")} title="h"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kI")} title="i"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kJk")} title="Jk"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kL")} title="l"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kM")} title="m"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kNopq")} title="Nopq"/>
-        </View>
-
-        <View style={styles.row}>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kR")} title="r"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kS")} title="s"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kTu")} title="Tu"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kVw")} title="Vw"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kX")} title="x"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kYz")} title="Yz"/>
-        </View>
-
-        <View style={styles.hr}/>
-
-        <View style={styles.row}>
-        <Button style={styles.key} onPress={()=>handleKey("kSub")} title="Sub"/>
-        <Button style={styles.key} onPress={()=>handleKey("kSup")} title="Sup"/>
-        <Button style={styles.key} onPress={()=>handleKey("kLeftBrace")} title="("/>
-        <Button style={styles.key} onPress={()=>handleKey("kRightBrace")} title=")"/>
-        <Button style={styles.key} onPress={()=>handleKey("kLess")} title="<"/>
-        <Button style={styles.key} onPress={()=>handleKey("kGreater")} title=">"/>
-        </View>
-
-        <View style={styles.row}>
-        <Button style={styles.key} onPress={()=>handleKey("kPi")} title="&pi;"/>
-        <Button style={styles.key} onPress={()=>handleKey("kFact")} title="!"/>
-        <Button style={styles.key} onPress={()=>handleKey("kMod")} title="mod"/>
-        <Button style={styles.key} onPress={()=>handleKey("kGreek")} title="&alpha;&beta;"/>
-        <Button style={styles.key} onPress={()=>handleKey("kUpper")} title="aA"/>
-        <Button style={styles.key} onPress={()=>handleKey("kAssign")} title="="/>
-        </View>
-
-        <View style={styles.hr}/>
-
-        <View style={styles.row}>
         <Button style={styles.key} onPress={()=>handleKey("kSin")} title="sin"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k7")} title="7"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k8")} title="8"/>
@@ -335,6 +286,55 @@ export default function Keyboard(props) {
         <Button style={styles.key} onPress={()=>handleKey("kLeft")} title="&larr;"/>
         <Button style={styles.key} onPress={()=>handleKey("kPlus")} title="+"/>
         <Button style={styles.key} onPress={()=>handleKey("kRight")} title="&rarr;"/>
+        </View>
+
+        <View style={styles.hr}/>
+
+        <View style={styles.row}>
+        <Button style={styles.key} onPress={()=>handleKey("kSub")} title="Sub"/>
+        <Button style={styles.key} onPress={()=>handleKey("kSup")} title="Sup"/>
+        <Button style={styles.key} onPress={()=>handleKey("kLeftBrace")} title="("/>
+        <Button style={styles.key} onPress={()=>handleKey("kRightBrace")} title=")"/>
+        <Button style={styles.key} onPress={()=>handleKey("kLess")} title="<"/>
+        <Button style={styles.key} onPress={()=>handleKey("kGreater")} title=">"/>
+        </View>
+
+        <View style={styles.row}>
+        <Button style={styles.key} onPress={()=>handleKey("kPi")} title="&pi;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kFact")} title="!"/>
+        <Button style={styles.key} onPress={()=>handleKey("kMod")} title="mod"/>
+        <Button style={styles.key} onPress={()=>handleKey("kGreek")} title="&alpha;&beta;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kUpper")} title="aA"/>
+        <Button style={styles.key} onPress={()=>handleKey("kAssign")} title="="/>
+        </View>
+
+        <View style={styles.hr}/>
+
+        <View style={styles.row}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kA")} title="a"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kB")} title="b"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kC")} title="c"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kDe")} title="De"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kF")} title="f"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kG")} title="g"/>
+        </View>
+
+        <View style={styles.row}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kH")} title="h"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kI")} title="i"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kJk")} title="Jk"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kL")} title="l"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kM")} title="m"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kNopq")} title="Nopq"/>
+        </View>
+
+        <View style={styles.row}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kR")} title="r"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kS")} title="s"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kTu")} title="Tu"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kVw")} title="Vw"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kX")} title="x"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kYz")} title="Yz"/>
         </View>
 
         </View>
