@@ -1,5 +1,7 @@
+import Visualizer from './Visualizer'
 import OutputPane from './OutputPane'
 import Keyboard from './Keyboard'
+import FullScreenFrame from './FullScreenFrame'
 
 const parser = require('../parser.js');
 require('../generator.js');
@@ -10,7 +12,7 @@ import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'
 const $ = window.jQuery;
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, Modal, Button } from 'react-native';
 import { useState } from 'react';
 
 addStyles();    // mathquill styles
@@ -29,8 +31,8 @@ var scope = {
 export default function App() {
 
   const [outputs, setOutputs] = useState([]);
-  const {height} = useWindowDimensions();
-  const windowHeight = height;
+  const [showVisualizer, setShowVisualizer] = useState(false);
+  const [functionsCol, setFunctionsCol] = useState([]);
 
   function processInput(latex){
 
@@ -76,10 +78,35 @@ export default function App() {
     MQ($('#mathScreen')[0]).keystroke('Backspace');     // enables cursor
   } // processInput
 
+  const showVis = ()=>{
+    setFunctionsCol([(x)=>scope['f'](x)]);
+    setShowVisualizer(true);
+  }
+
   return (
-    <View style={styles.body}>
-    <View style={[styles.container, {height: windowHeight, width: windowHeight/2}]}>
+
+    <>
+
+    <Modal
+      transparent={false}
+      visible={showVisualizer}
+      onRequestClose={() => {
+        setShowVisualizer(false);
+    }}>
+      <FullScreenFrame id="fsid">
+        <Visualizer
+          functionsCol = {functionsCol}
+        />
+        <Button onPress={()=>{
+            setShowVisualizer(false);
+        }} title="Close"/>
+      </FullScreenFrame>
+    </Modal>
+
+    <FullScreenFrame style={styles.container}>
+
       <OutputPane formulas={outputs} style={styles.output}/>
+
       <View style={styles.input}>
         <EditableMathField
           style={styles.mathScreen}
@@ -87,6 +114,9 @@ export default function App() {
           id="mathScreen"
         />
       </View>
+
+      <Button onPress = {showVis} title="Show Vis" />
+
       <Keyboard style={styles.keyboard}
       typedText={(input)=>{
         MQ($('#mathScreen')[0]).typedText(input);
@@ -104,18 +134,16 @@ export default function App() {
             MQ($('#mathScreen')[0]).keystroke('Backspace');     // enables cursor
         }
       }}/>
+
       <StatusBar style="auto" />
-    </View>
-    </View>
+
+    </FullScreenFrame>
+
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  body:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   container: {
     backgroundColor: '#fff',
     alignItems: 'center',
