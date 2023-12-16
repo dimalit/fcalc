@@ -123,9 +123,6 @@ export default function Keyboard(props) {
             case "kRight":
                 writeKey("Right");
                 break;
-            case "kCC":
-                handleCommand("C");
-                break;
             case "kAssign":
                 writeInput("=");
                 break;
@@ -258,7 +255,7 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k8")} title="8"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k9")} title="9"/>
         <Button style={styles.key} onPress={()=>handleKey("kDiv")} title="/"/>
-        <Button style={[styles.key, styles.cc]} onPress={()=>handleKey("kCC")} title="C"/>
+        <Button style={styles.key} onPress={()=>handleKey("kPi")} title="&pi;"/>
         </View>
 
         <View style={styles.row}>
@@ -267,7 +264,7 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k5")} title="5"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k6")} title="6"/>
         <Button style={styles.key} onPress={()=>handleKey("kTimes")} title="&times;"/>
-        <Button style={styles.key} onPress={()=>handleKey("kBksp")} title="&#9003;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kFact")} title="!"/>
         </View>
 
         <View style={styles.row}>
@@ -276,16 +273,16 @@ export default function Keyboard(props) {
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k2")} title="2"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k3")} title="3"/>
         <Button style={styles.key} onPress={()=>handleKey("kMinus")} title="-"/>
-        <Button style={[styles.key, styles.enter]} onPress={()=>handleKey("kEnter")} title="&#9166;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kMod")} title="mod"/>
         </View>
 
         <View style={styles.row}>
         <Button style={styles.key} onPress={()=>handleKey("kSqrt")} title="&radic;"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k0")} title="0"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("kDot")} title=".,"/>
-        <Button style={styles.key} onPress={()=>handleKey("kLeft")} title="&larr;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kBksp")} title="&#9003;"/>
         <Button style={styles.key} onPress={()=>handleKey("kPlus")} title="+"/>
-        <Button style={styles.key} onPress={()=>handleKey("kRight")} title="&rarr;"/>
+        <Button style={[styles.key, styles.enter]} onPress={()=>handleKey("kEnter")} title="&#9166;"/>
         </View>
 
         <View style={styles.hr}/>
@@ -295,16 +292,16 @@ export default function Keyboard(props) {
         <Button style={styles.key} onPress={()=>handleKey("kSup")} title="Sup"/>
         <Button style={styles.key} onPress={()=>handleKey("kLeftBrace")} title="("/>
         <Button style={styles.key} onPress={()=>handleKey("kRightBrace")} title=")"/>
-        <Button style={styles.key} onPress={()=>handleKey("kLess")} title="<"/>
-        <Button style={styles.key} onPress={()=>handleKey("kGreater")} title=">"/>
+        <Button style={styles.key} onPress={()=>handleKey("kLeft")} title="&larr;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kRight")} title="&rarr;"/>
         </View>
 
         <View style={styles.row}>
-        <Button style={styles.key} onPress={()=>handleKey("kPi")} title="&pi;"/>
-        <Button style={styles.key} onPress={()=>handleKey("kFact")} title="!"/>
-        <Button style={styles.key} onPress={()=>handleKey("kMod")} title="mod"/>
         <Button style={styles.key} onPress={()=>handleKey("kGreek")} title="&alpha;&beta;"/>
         <Button style={styles.key} onPress={()=>handleKey("kUpper")} title="aA"/>
+        <Button style={styles.key} onPress={()=>handleKey("kOr")} title="&or;"/>
+        <Button style={styles.key} onPress={()=>handleKey("kLess")} title="<"/>
+        <Button style={styles.key} onPress={()=>handleKey("kGreater")} title=">"/>
         <Button style={styles.key} onPress={()=>handleKey("kAssign")} title="="/>
         </View>
 
