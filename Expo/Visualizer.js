@@ -20,7 +20,7 @@ export default function Visualizer(props){
     }
 
     const renderItem = el=>{
-        return (<Text>{el.item.row.map(e=>e+' ')}</Text>);
+        return (<Text>{el.item.key} {el.item.row.map(e=>e).join(' ')}</Text>);
     }
 
     return(

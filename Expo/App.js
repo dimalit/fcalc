@@ -31,6 +31,7 @@ var scope = {
 export default function App() {
 
   const [outputs, setOutputs] = useState([]);
+  const [lhsArray, setLhsArray] = useState([]);
   const [showVisualizer, setShowVisualizer] = useState(false);
   const [functionsCol, setFunctionsCol] = useState([]);
 
@@ -69,17 +70,20 @@ export default function App() {
     const func = (typeof ev == "function");
 
     const text = func ? latex : latex + ' = ' + ev;
+    const lhs  = func ? tree_node.lhs : null;
 
     console.log("text:");
     console.log(text); 
     setOutputs([...outputs, text]);
+    setLhsArray([...lhsArray, lhs]);
 
     MQ($('#mathScreen')[0]).latex('');
     MQ($('#mathScreen')[0]).keystroke('Backspace');     // enables cursor
   } // processInput
 
-  const showVis = ()=>{
-    setFunctionsCol([(x)=>scope['f'](x)]);
+  const showVis = (i)=>{
+    const lhs = lhsArray[i];
+    setFunctionsCol([(x)=>scope[lhs.name](x)]);
     setShowVisualizer(true);
   }
 
@@ -105,7 +109,7 @@ export default function App() {
 
     <FullScreenFrame style={styles.container}>
 
-      <OutputPane formulas={outputs} style={styles.output}/>
+      <OutputPane formulas={outputs} style={styles.output} onRequestView={showVis}/>
 
       <View style={styles.input}>
         <EditableMathField
@@ -114,8 +118,6 @@ export default function App() {
           id="mathScreen"
         />
       </View>
-
-      <Button onPress = {showVis} title="Show Vis" />
 
       <Keyboard style={styles.keyboard}
       typedText={(input)=>{

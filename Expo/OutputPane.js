@@ -4,23 +4,23 @@ import { ScrollView, StyleSheet } from "react-native"
 
 import { useState, useRef } from "react"
 
-export default function OutputPane(props){
+export default function OutputPane({style, formulas, onRequestView}){
     const scrollView = useRef(null);
 
     const scrollToEnd = function(){
         scrollView.current.scrollToEnd();
     }
 
-    const items = [];
-    for(let i in props.formulas)
-        items.push(<OutputItem key={i} latex={props.formulas[i]}/>);
-
     return(
         <ScrollView ref={scrollView}
-            style={props.style}
+            style={style}
             contentContainerStyle={styles.scroll}
             onContentSizeChange={scrollToEnd}>
-            {items}
+            {
+                formulas.map(
+                    (f, i) => <OutputItem key={i} latex={f} onRequestView={()=>{onRequestView(i);}}/>
+                )
+            }
         </ScrollView>
     );
 }
