@@ -54,7 +54,7 @@ export default function App() {
     console.log("code:");
     console.log(code);
 
-    const ev = eval(code);
+    let ev = eval(code);
 
     // update "res" variable
     let prev_res = scope.res;
@@ -68,6 +68,14 @@ export default function App() {
 
     // decide result or code
     const func = (typeof ev == "function");
+
+    if(!func){
+        ev=""+ev;
+        if(ev.search(/e\+/)>0)
+            ev = ev.replace("e+", "\\cdot10^{")+"}";
+        else if(ev.search(/e\-/)>0)
+            ev = ev.replace("e-", "\\cdot10^{-")+"}";
+    }
 
     const text = func ? latex : latex + ' = ' + ev;
     const lhs  = func ? tree_node.lhs : null;
