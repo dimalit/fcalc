@@ -106,12 +106,20 @@ export default function Keyboard(props) {
                 writeInput("_");
                 break;
             case "kDot":
-                if(prevKey!="kDot")
+                if(!["kDot", "kComma", "kSemic"].includes(prevKey))
                     writeInput(".");
-                else {
+                else if(prevKey=="kDot") {
                     writeKey("Backspace");
                     writeInput(",");
                     id="kComma";
+                } else if(prevKey=="kComma") {
+                    writeKey("Backspace");
+                    writeInput(";");
+                    id="kSemic";
+                } else if(prevKey=="kSemic") {
+                    writeKey("Backspace");
+                    writeInput(".");
+                    id="kDot";
                 }
                 break;
             case "kBksp":
@@ -279,7 +287,7 @@ export default function Keyboard(props) {
         <View style={styles.row}>
         <Button style={styles.key} onPress={()=>handleKey("kSqrt")} title="&radic;"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k0")} title="0"/>
-        <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("kDot")} title=".,"/>
+        <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("kDot")} title=".,;"/>
         <Button style={styles.key} onPress={()=>handleKey("kBksp")} title="&#9003;"/>
         <Button style={styles.key} onPress={()=>handleKey("kPlus")} title="+"/>
         <Button style={[styles.key, styles.enter]} onPress={()=>handleKey("kEnter")} title="&#9166;"/>
