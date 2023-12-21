@@ -1,6 +1,7 @@
 import Button from "./Button"
 
 import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
 
 function processResult(){
     function process(input){
@@ -22,8 +23,10 @@ function processResult(){
 
 export default function Keyboard(props) {
 
+        const [caps, setCaps] = useState(false);
+
         function writeInput(input){
-            props.typedText(input);
+            props.typedText(caps?input.toUpperCase():input);
         }
 
         function writeCmd(input){
@@ -250,6 +253,8 @@ export default function Keyboard(props) {
             case "kEnter":
                 handleCommand("Enter");
                 break;
+            case "kUpper":
+                setCaps(!caps);
             } // sw
             prevKey = id;
         } // handleKey()
@@ -320,40 +325,40 @@ export default function Keyboard(props) {
         <View style={styles.hr}/>
 
         <View style={styles.row}>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kA")} title="a"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kB")} title="b"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kC")} title="c"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kDe")}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kA")} caps={caps} title="a"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kB")} caps={caps} title="b"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kC")} caps={caps} title="c"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kDe")} caps={caps}>
             <span>d<sub>e</sub></span>
             </Button>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kF")} title="f"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kG")} title="g"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kF")} caps={caps} title="f"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kG")} caps={caps} title="g"/>
         </View>
 
         <View style={styles.row}>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kH")} title="h"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kI")} title="i"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kJk")}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kH")} caps={caps} title="h"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kI")} caps={caps} title="i"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kJk")} caps={caps}>
             <span>j<sub>k</sub></span>
             </Button>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kL")} title="l"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kM")} title="m"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kNopq")}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kL")} caps={caps} title="l"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kM")} caps={caps} title="m"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kNopq")} caps={caps}>
             <span>n<sub>opq</sub></span>
             </Button>
         </View>
 
         <View style={styles.row}>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kR")} title="r"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kS")} title="s"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kTu")}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kR")} caps={caps} title="r"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kS")} caps={caps} title="s"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kTu")} caps={caps}>
             <span>t<sub>u</sub></span>
             </Button>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kVw")}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kVw")} caps={caps}>
             <span>v<sub>w</sub></span>
             </Button>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kX")} title="x"/>
-        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kYz")}>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kX")} caps={caps} title="x"/>
+        <Button style={[styles.key, styles.mathKey]} onPress={()=>handleKey("kYz")} caps={caps}>
             <span>y<sub>z</sub></span>
             </Button>
         </View>
