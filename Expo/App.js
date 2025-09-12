@@ -33,7 +33,7 @@ export default function App() {
   const [outputs, setOutputs] = useState([]);
   const [lhsArray, setLhsArray] = useState([]);
   const [showVisualizer, setShowVisualizer] = useState(false);
-  const [functionsCol, setFunctionsCol] = useState([]);
+  const [functionYDummyArray, setFunctionYDummyArray] = useState([()=>""]);
 
   function processInput(latex){
 
@@ -81,7 +81,11 @@ export default function App() {
     const lhs  = func ? tree_node.lhs : null;
 
     console.log("text:");
-    console.log(text); 
+    console.log(text);
+
+    console.log("lhs:");
+    console.log(lhs);
+
     setOutputs([...outputs, text]);
     setLhsArray([...lhsArray, lhs]);
 
@@ -91,7 +95,8 @@ export default function App() {
 
   const showVis = (i)=>{
     const lhs = lhsArray[i];
-    setFunctionsCol([(x)=>scope[lhs.name](x)]);
+    const funY = (x)=>scope[lhs.name](x);
+    setFunctionYDummyArray([funY]);
     setShowVisualizer(true);
   }
 
@@ -107,7 +112,7 @@ export default function App() {
     }}>
       <FullScreenFrame id="fsid">
         <Visualizer
-          functionsCol = {functionsCol}
+          functionY = {functionYDummyArray}
         />
         <Button onPress={()=>{
             setShowVisualizer(false);
