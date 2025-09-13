@@ -32,8 +32,7 @@ export default function App() {
 
   const [outputs, setOutputs] = useState([]);
   const [lhsArray, setLhsArray] = useState([]);
-  const [showVisualizer, setShowVisualizer] = useState(false);
-  const [functionYDummyArray, setFunctionYDummyArray] = useState([()=>""]);
+  const [visualizerIndex, setVisualizerIndex] = useState(-1);
 
   function processInput(latex){
 
@@ -93,11 +92,23 @@ export default function App() {
     MQ($('#mathScreen')[0]).keystroke('Backspace');     // enables cursor
   } // processInput
 
-  const showVis = (i)=>{
-    const lhs = lhsArray[i];
-    const funY = (x)=>scope[lhs.name](x);
-    setFunctionYDummyArray([funY]);
-    setShowVisualizer(true);
+  function ConditionedVisualizer() {
+    if (visualizerIndex < 0)
+      return null;
+    return(
+      <>
+      <FullScreenFrame id="fsid">
+        <Visualizer
+          functionY = {
+            (x)=>scope[lhsArray[visualizerIndex].name](x)
+          }
+        />
+        <Button onPress={()=>{
+            setVisualizerIndex(-1);
+        }} title="Close"/>
+      </FullScreenFrame>
+      </>
+    );
   }
 
   return (
@@ -106,23 +117,16 @@ export default function App() {
 
     <Modal
       transparent={false}
-      visible={showVisualizer}
+      visible={visualizerIndex>=0}
       onRequestClose={() => {
-        setShowVisualizer(false);
+        setVisualizerIndex(-1);
     }}>
-      <FullScreenFrame id="fsid">
-        <Visualizer
-          functionY = {functionYDummyArray}
-        />
-        <Button onPress={()=>{
-            setShowVisualizer(false);
-        }} title="Close"/>
-      </FullScreenFrame>
+      <ConditionedVisualizer/>
     </Modal>
 
     <FullScreenFrame style={styles.container}>
 
-      <OutputPane formulas={outputs} style={styles.output} onRequestView={showVis}/>
+      <OutputPane formulas={outputs} style={styles.output} onRequestView={setVisualizerIndex}/>
 
       <View style={styles.input}>
         <EditableMathField

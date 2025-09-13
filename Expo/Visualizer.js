@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, VirtualizedList } from 'react-native'
 
 import { useState } from 'react'
 
-export default function Visualizer({functionY: functionYDummyArray}){
+export default function Visualizer({functionY}){
 
     const functionX=function(i){return i;};
 
@@ -11,7 +11,7 @@ export default function Visualizer({functionY: functionYDummyArray}){
     }
 
     const getItem = (_dummy, index)=>{
-        const row = [functionYDummyArray[0](functionX(index))];
+        const row = [functionY(functionX(index))];
         return {
             key: index,
             row: row
