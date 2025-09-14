@@ -114,7 +114,27 @@ export default function Keyboard(props) {
                 }
                 break;
             case "kCos":
-                writeCmd("\\cos");
+                if(prevKey!="kCos" && prevKey!="kArccos"){
+                    writeCmd("\\cos");
+                    id="kCos";
+                }
+                else if(prevKey=="kCos") {
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeInput("arccos");
+                    id="kArccos";
+                }
+                else if(prevKey=="kArccos") {
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeInput("cos");
+                    id="kCos";
+                }
                 break;
             case "kLog":
                 writeCmd("\\log");
@@ -284,7 +304,7 @@ export default function Keyboard(props) {
 
         <View style={styles.row}>
         <Button style={styles.key} onPress={()=>handleKey("kSin")}>
-            <span><sub>arc</sub>sin</span>
+            <span><sub>a</sub>sin</span>
             </Button>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k7")} title="7"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k8")} title="8"/>
@@ -294,7 +314,9 @@ export default function Keyboard(props) {
         </View>
 
         <View style={styles.row}>
-        <Button style={styles.key} onPress={()=>handleKey("kCos")} title="cos"/>
+        <Button style={styles.key} onPress={()=>handleKey("kCos")}>
+            <span><sub>a</sub>cos</span>
+            </Button>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k4")} title="4"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k5")} title="5"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k6")} title="6"/>
