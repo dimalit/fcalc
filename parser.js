@@ -148,7 +148,7 @@ dict_detector.prototype.reset = function(){
 }
 dict_detector.prototype.consume = function(c){
 
-    let dict = ['\\ge', '\\le', '\\frac', '\\cdot', '\\sin', '\\cos', '\\tan', '\\sqrt', '\\exp', '\\log', '\\pi', '\\vee', '\\wedge'];
+    let dict = ['\\ge', '\\le', '\\frac', '\\cdot', '\\sin', '\\arcsin', '\\cos', '\\arccos', '\\tan', '\\arctan', '\\sqrt', '\\exp', '\\log', '\\pi', '\\vee', '\\wedge'];
 
     if(!this.valid)
         return false;

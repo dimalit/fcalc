@@ -91,7 +91,27 @@ export default function Keyboard(props) {
                 writeCmd("\\sqrt");
                 break;
             case "kSin":
-                writeCmd("\\sin");
+                if(prevKey!="kSin" && prevKey!="kArcsin"){
+                    writeCmd("\\sin");
+                    id="kSin";
+                }
+                else if(prevKey=="kSin") {
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeInput("arcsin");
+                    id="kArcsin";
+                }
+                else if(prevKey=="kArcsin") {
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeKey("Backspace");
+                    writeInput("sin");
+                    id="kSin";
+                }
                 break;
             case "kCos":
                 writeCmd("\\cos");
@@ -263,7 +283,9 @@ export default function Keyboard(props) {
         <View style={[props.style, styles.keyboard]}>
 
         <View style={styles.row}>
-        <Button style={styles.key} onPress={()=>handleKey("kSin")} title="sin"/>
+        <Button style={styles.key} onPress={()=>handleKey("kSin")}>
+            <span><sub>arc</sub>sin</span>
+            </Button>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k7")} title="7"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k8")} title="8"/>
         <Button style={[styles.key, styles.dark]} onPress={()=>handleKey("k9")} title="9"/>
@@ -370,7 +392,8 @@ export default function Keyboard(props) {
 const styles = StyleSheet.create({
   keyboard: {
     flexDirection: 'column',
-    gap: 6
+    gap: 6,
+    userSelect: 'none'
   },
   row: {
     flexDirection: 'row',

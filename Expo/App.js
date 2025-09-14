@@ -20,7 +20,7 @@ addStyles();    // mathquill styles
 // global (!) scope for eval()
 var scope = {
   sin: Math.sin, cos: Math.cos, tan: Math.tan,
-  asin: Math.asin, acos: Math.acos, atan: Math.atan,
+  arcsin: Math.asin, arccos: Math.acos, arctan: Math.atan,
   exp: Math.exp, log: Math.log,
   sqrt: Math.sqrt,
   pi: Math.PI,
