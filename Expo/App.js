@@ -92,6 +92,15 @@ export default function App() {
     MQ($('#mathScreen')[0]).keystroke('Backspace');     // enables cursor
   } // processInput
 
+  const MQConfig = {
+    handlers: {
+      enter: ()=>{
+        const latex = MQ($('#mathScreen')[0]).latex();
+        processInput(latex);
+      }// func
+    }
+  };
+
   function ConditionedVisualizer() {
     if (visualizerIndex < 0)
       return null;
@@ -133,6 +142,8 @@ export default function App() {
           style={styles.mathScreen}
           latex=""
           id="mathScreen"
+          tabIndex={0}
+          config={MQConfig}
         />
       </View>
 
@@ -184,7 +195,8 @@ const styles = StyleSheet.create({
     border: "none",
     marginLeft: 10,
     marginRight: 10,
-    textAlign: "center"
+    textAlign: "center",
+    boxShadow: "none",
   },
   output:{
     width: "100%"

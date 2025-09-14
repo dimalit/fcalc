@@ -17,6 +17,8 @@ export default function CalcButton({style, title, onPress, caps, children}){
             onLayout = {adjustHeight}
             style = {[styles.button, {height: height}, style, caps?{textTransform:'uppercase'}:{}]}
             onPress = {onPress}
+            tabIndex = {-1}
+            onMouseDown = {(e)=>{e.preventDefault();}}
         >
         <Text style={style}>{title}</Text>
         {children}
