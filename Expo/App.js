@@ -3,8 +3,8 @@ import OutputPane from './OutputPane'
 import Keyboard from './Keyboard'
 import FullScreenFrame from './FullScreenFrame'
 
-const parser = require('../parser.js');
-require('../generator.js');
+const parser = require('./parser');
+require('./generator');
 
 const MQ = window.MathQuill.getInterface(2);
 import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'

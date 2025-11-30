@@ -1,8 +1,13 @@
 {
   "expo": {
-    "name": "Expo",
-    "slug": "Expo",
+    "name": "FCalc",
+    "slug": "fcalc",
     "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -27,6 +32,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+    ]
   }
 }
