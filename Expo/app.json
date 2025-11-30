@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Expo",
-    "slug": "Expo",
+    "name": "FCalc",
+    "slug": "fcalc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
