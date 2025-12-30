@@ -3,14 +3,15 @@
   "display": "standalone",
   "lang": "en",
   "name": "FCalc",
+  "scope": "/fcalc",
   "short_name": "fcalc",
-  "start_url": "/?utm_source=web_app_manifest",
+  "start_url": "/fcalc",
   "theme_color": "#111111",
   "orientation": "portrait",
   "related_applications": [
     {
       "platform": "itunes",
-      "id": "com.anonymous.Expo"
+      "id": "io.github.dimalit.fcalc"
     },
     {
       "platform": "play",

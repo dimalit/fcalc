@@ -21,7 +21,9 @@
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "workbox-cli": "^7.4.0",
+    "workbox-webpack-plugin": "^7.4.0"
   },
   "private": true
 }

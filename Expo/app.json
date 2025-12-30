@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Expo"
+      "bundleIdentifier": "io.github.dimalit.fcalc"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,7 +31,9 @@
       "display": "standalone",
       "themeColor": "#111111",
       "backgroundColor": "#ffffff",
-      "favicon": "./assets/fcalc-512.png"
+      "favicon": "./assets/fcalc-512.png",
+      "startUrl": "/fcalc",
+      "scope": "/fcalc"
     }
   }
 }
