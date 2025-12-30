@@ -4,7 +4,7 @@
     "slug": "fcalc",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/fcalc-512.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -26,7 +26,12 @@
       "package": "com.anonymous.Expo"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "name": "FCalc",
+      "shortName": "fcalc",
+      "display": "standalone",
+      "themeColor": "#111111",
+      "backgroundColor": "#ffffff",
+      "favicon": "./assets/fcalc-512.png"
     }
   }
 }

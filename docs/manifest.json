@@ -3,8 +3,9 @@
   "display": "standalone",
   "lang": "en",
   "name": "FCalc",
-  "short_name": "FCalc",
+  "short_name": "fcalc",
   "start_url": "/?utm_source=web_app_manifest",
+  "theme_color": "#111111",
   "orientation": "portrait",
   "related_applications": [
     {
