@@ -20,10 +20,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/fcalc-512.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.Expo"
+      "package": "io.github.dimalit.fcalc"
     },
     "web": {
       "name": "FCalc",
